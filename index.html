@@ -5,100 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ScholSteps | Scholarships for Minorities & Underserved Youth</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Header -->
-  <header class="bg-blue-700 text-white p-6 shadow">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-3xl font-extrabold tracking-wide">ScholSteps</h1>
-      <p class="mt-1 text-sm">Empowering underrepresented students—one scholarship at a time.</p>
+  <!-- Navigation -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-xl font-bold text-blue-700">ScholSteps</h1>
+      <div class="space-x-4 text-sm">
+        <a href="#scholarships" class="hover:text-blue-600">Scholarships</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
+        <a href="#submit" class="hover:text-blue-600">Submit</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- Hero Section -->
-  <section class="bg-white py-10 text-center">
-    <h2 class="text-3xl font-semibold">Your Future Starts with a Step</h2>
-    <p class="text-gray-600 max-w-xl mx-auto mt-3">ScholSteps helps minority and underprivileged youth find life-changing scholarships and resources for college success.</p>
+  <!-- Hero -->
+  <section class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white py-20 text-center px-4">
+    <h2 class="text-4xl font-bold mb-4">Unlock Your Future with ScholSteps</h2>
+    <p class="max-w-xl mx-auto text-lg opacity-90">Discover scholarships for minority, first-gen, and underserved students. Start your journey toward college today.</p>
+  </section>
+
+  <!-- Search Bar -->
+  <section class="py-8 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <input id="searchInput" type="text" placeholder="Search scholarships..." 
+             class="w-full p-3 border border-gray-300 rounded shadow focus:outline-none" />
+    </div>
   </section>
 
   <!-- Scholarships -->
-  <section class="py-10 bg-gray-100">
+  <section id="scholarships" class="py-16 bg-gray-100">
     <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-2xl font-bold text-blue-700 mb-6">🎓 Featured Scholarships</h3>
-      
-      <!-- Scholarship Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Gates -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">The Gates Scholarship</h4>
-          <p class="text-sm mt-2">Full ride for outstanding minority high school seniors from low-income households.</p>
-          <a href="https://www.thegatesscholarship.org/" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+      <h3 class="text-3xl font-semibold text-center text-blue-700 mb-10">🎓 Featured Scholarships</h3>
+      <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card Template -->
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="gates scholarship minority leadership financial need">
+          <h4 class="text-lg font-bold mb-1">The Gates Scholarship</h4>
+          <p class="text-sm text-gray-600 mb-2">Full ride for minority seniors with leadership and financial need.</p>
+          <a href="https://www.thegatesscholarship.org/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
-        <!-- UNCF -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">UNCF Scholarships</h4>
-          <p class="text-sm mt-2">Multiple awards for African-American students across the U.S.</p>
-          <a href="https://uncf.org/scholarships" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="uncf scholarships african-american academic">
+          <h4 class="text-lg font-bold mb-1">UNCF Scholarships</h4>
+          <p class="text-sm text-gray-600 mb-2">Support for African‑American students with academic excellence.</p>
+          <a href="https://uncf.org/scholarships" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
-        <!-- HSF -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">Hispanic Scholarship Fund</h4>
-          <p class="text-sm mt-2">Up to $5,000 for Hispanic students with financial need and academic achievement.</p>
-          <a href="https://www.hsf.net/scholarship" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="hispanic scholarship fund latin students">
+          <h4 class="text-lg font-bold mb-1">Hispanic Scholarship Fund</h4>
+          <p class="text-sm text-gray-600 mb-2">Up to $5,000 for Latinx students with financial need.</p>
+          <a href="https://www.hsf.net/scholarship" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
-        <!-- APIA -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">APIA Scholarship</h4>
-          <p class="text-sm mt-2">Supports Asian American and Pacific Islander students with financial need.</p>
-          <a href="https://apiascholars.org/scholarship/apia-scholarship/" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="apia scholars asian pacific islander underserved">
+          <h4 class="text-lg font-bold mb-1">APIA Scholars</h4>
+          <p class="text-sm text-gray-600 mb-2">Support for Asian & Pacific Islander students from underserved backgrounds.</p>
+          <a href="https://apiascholars.org/scholarship/apia‑scholarship/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
-        <!-- Dell Scholars -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">Dell Scholars Program</h4>
-          <p class="text-sm mt-2">For first-gen college students showing grit and financial need.</p>
-          <a href="https://www.dellscholars.org/" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="dell scholars first-gen resilient financial need">
+          <h4 class="text-lg font-bold mb-1">Dell Scholars</h4>
+          <p class="text-sm text-gray-600 mb-2">For resilient first‑gen college students showing grit and need.</p>
+          <a href="https://www.dellscholars.org/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
-        <!-- Point Foundation -->
-        <div class="bg-white p-5 rounded shadow">
-          <h4 class="font-bold text-lg">Point Foundation LGBTQ+ Scholarship</h4>
-          <p class="text-sm mt-2">Supports LGBTQ+ students committed to leadership and community impact.</p>
-          <a href="https://pointfoundation.org/scholarships/" target="_blank" class="text-blue-600 mt-3 inline-block">Learn More →</a>
+        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="point foundation lgbtq leadership service inclusion">
+          <h4 class="text-lg font-bold mb-1">Point Foundation</h4>
+          <p class="text-sm text-gray-600 mb-2">LGBTQ+ scholarships for leaders committed to inclusion and service.</p>
+          <a href="https://pointfoundation.org/scholarships/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Us -->
-  <section class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-2xl font-bold text-blue-700 mb-4">📬 Contact Us</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded" required>
-        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded" required>
-        <textarea placeholder="Your Message" class="w-full p-3 border rounded h-32" required></textarea>
-        <button class="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800" type="submit">Send Message</button>
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-blue-700 mb-6 text-center">📬 Contact Us</h3>
+      <form action="https://formspree.io/f/YOUR_CONTACT_ENDPOINT" method="POST" class="space-y-5">
+        <input name="name" type="text" placeholder="Your Name" class="w-full border border-gray-300 p-3 rounded" required />
+        <input name="email" type="email" placeholder="Your Email" class="w-full border border-gray-300 p-3 rounded" required />
+        <textarea name="message" placeholder="Your Message" class="w-full border border-gray-300 p-3 rounded h-32" required></textarea>
+        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition">Send Message</button>
       </form>
     </div>
   </section>
 
-  <!-- Submit a Scholarship -->
-  <section class="py-12 bg-gray-100">
-    <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-2xl font-bold text-blue-700 mb-4">🎁 Submit a Scholarship</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Scholarship Name" class="w-full p-3 border rounded" required>
-        <input type="url" placeholder="Scholarship Link" class="w-full p-3 border rounded" required>
-        <textarea placeholder="Brief Description" class="w-full p-3 border rounded h-24" required></textarea>
-        <button class="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800" type="submit">Submit</button>
+  <!-- Submit Scholarship -->
+  <section id="submit" class="py-16 bg-gray-100">
+    <div class="max-w-3xl mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-blue-700 mb-6 text-center">🎁 Submit a Scholarship</h3>
+      <form action="https://formspree.io/f/YOUR_SUBMIT_ENDPOINT" method="POST" class="space-y-5">
+        <input name="name" type="text" placeholder="Scholarship Name" class="w-full border border-gray-300 p-3 rounded" required />
+        <input name="link" type="url" placeholder="Scholarship Link" class="w-full border border-gray-300 p-3 rounded" required />
+        <textarea name="description" placeholder="Brief Description" class="w-full border border-gray-300 p-3 rounded h-24" required></textarea>
+        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition">Submit Scholarship</button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-700 text-white text-center py-6 mt-10">
-    <p>&copy; 2025 ScholSteps. Made with 💙 for students like you.</p>
+  <footer class="bg-blue-700 text-white py-6 text-center text-sm">
+    <p>&copy; 2025 ScholSteps • Built for students, by students 💙</p>
   </footer>
 
+  <!-- Search Filter Script -->
+  <script>
+    const input = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      cards.forEach(card => {
+        card.style.display = card.getAttribute('data-keywords').includes(q) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
