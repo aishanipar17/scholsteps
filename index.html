@@ -28,7 +28,7 @@
     <p class="max-w-xl mx-auto text-lg opacity-90">Discover scholarships for minority, first-gen, and underserved students. Start your journey toward college today.</p>
   </section>
 
-  <!-- Search Bar -->
+  <!-- Search -->
   <section class="py-8 bg-gray-100">
     <div class="max-w-4xl mx-auto px-4">
       <input id="searchInput" type="text" placeholder="Search scholarships..." 
@@ -42,41 +42,119 @@
       <h3 class="text-3xl font-semibold text-center text-blue-700 mb-10">🎓 Featured Scholarships</h3>
       <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card Template -->
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="gates scholarship minority leadership financial need">
-          <h4 class="text-lg font-bold mb-1">The Gates Scholarship</h4>
-          <p class="text-sm text-gray-600 mb-2">Full ride for minority seniors with leadership and financial need.</p>
-          <a href="https://www.thegatesscholarship.org/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="uncf scholarships african-american academic">
-          <h4 class="text-lg font-bold mb-1">UNCF Scholarships</h4>
-          <p class="text-sm text-gray-600 mb-2">Support for African‑American students with academic excellence.</p>
-          <a href="https://uncf.org/scholarships" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="hispanic scholarship fund latin students">
-          <h4 class="text-lg font-bold mb-1">Hispanic Scholarship Fund</h4>
-          <p class="text-sm text-gray-600 mb-2">Up to $5,000 for Latinx students with financial need.</p>
-          <a href="https://www.hsf.net/scholarship" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="apia scholars asian pacific islander underserved">
-          <h4 class="text-lg font-bold mb-1">APIA Scholars</h4>
-          <p class="text-sm text-gray-600 mb-2">Support for Asian & Pacific Islander students from underserved backgrounds.</p>
-          <a href="https://apiascholars.org/scholarship/apia‑scholarship/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="dell scholars first-gen resilient financial need">
-          <h4 class="text-lg font-bold mb-1">Dell Scholars</h4>
-          <p class="text-sm text-gray-600 mb-2">For resilient first‑gen college students showing grit and need.</p>
-          <a href="https://www.dellscholars.org/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
-        <div class="card bg-white p-6 rounded-lg shadow hover:shadow-md transition" data-keywords="point foundation lgbtq leadership service inclusion">
-          <h4 class="text-lg font-bold mb-1">Point Foundation</h4>
-          <p class="text-sm text-gray-600 mb-2">LGBTQ+ scholarships for leaders committed to inclusion and service.</p>
-          <a href="https://pointfoundation.org/scholarships/" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
-        </div>
+        <!-- Each card contains: scholarship name, short description, link -->
+        <!-- Each card includes keywords for search filtering -->
+
+        <!-- Example scholarship card -->
+        <script>
+          const scholarships = [
+            {
+              name: "The Gates Scholarship",
+              description: "Full ride for minority seniors with leadership and financial need.",
+              link: "https://www.thegatesscholarship.org/",
+              keywords: "gates minority leadership financial"
+            },
+            {
+              name: "UNCF Scholarships",
+              description: "Support for African-American students with academic excellence.",
+              link: "https://uncf.org/scholarships",
+              keywords: "uncf black african-american"
+            },
+            {
+              name: "Hispanic Scholarship Fund",
+              description: "Up to $5,000 for Latinx students with financial need.",
+              link: "https://www.hsf.net/scholarship",
+              keywords: "hispanic latino latinx"
+            },
+            {
+              name: "APIA Scholars",
+              description: "Support for Asian & Pacific Islander students from underserved backgrounds.",
+              link: "https://apiascholars.org/scholarship/apia-scholarship/",
+              keywords: "asian pacific islander apia"
+            },
+            {
+              name: "Dell Scholars",
+              description: "For resilient first-gen college students showing grit and need.",
+              link: "https://www.dellscholars.org/",
+              keywords: "first-gen dell resilient"
+            },
+            {
+              name: "Point Foundation",
+              description: "LGBTQ+ scholarships for leaders committed to inclusion and service.",
+              link: "https://pointfoundation.org/scholarships/",
+              keywords: "lgbtq point inclusion"
+            },
+            {
+              name: "Jackie Robinson Foundation",
+              description: "Four-year scholarships for minority students with leadership potential.",
+              link: "https://www.jackierobinson.org/apply/",
+              keywords: "jackie robinson black minority"
+            },
+            {
+              name: "Ron Brown Scholar Program",
+              description: "Scholarship for academically gifted African-American high school seniors.",
+              link: "https://ronbrown.org/",
+              keywords: "ron brown african-american black"
+            },
+            {
+              name: "Coca-Cola Scholars Program",
+              description: "Prestigious scholarship recognizing leadership and academics.",
+              link: "https://www.coca-colascholarsfoundation.org/apply/",
+              keywords: "coca-cola merit leadership"
+            },
+            {
+              name: "Thurgood Marshall College Fund",
+              description: "Scholarships for students at HBCUs.",
+              link: "https://www.tmcf.org/students-alumni/scholarship/",
+              keywords: "thurgood marshall hbcu black"
+            },
+            {
+              name: "College Board Opportunity Scholarships",
+              description: "Simple steps for scholarships — open to all.",
+              link: "https://opportunity.collegeboard.org/",
+              keywords: "college board open everyone"
+            },
+            {
+              name: "American Indian College Fund",
+              description: "Scholarships for Native American students pursuing higher education.",
+              link: "https://collegefund.org/students/scholarships/",
+              keywords: "native american indigenous tribal"
+            }
+          ];
+
+          window.addEventListener('DOMContentLoaded', () => {
+            const cardsContainer = document.getElementById('cards');
+            const searchInput = document.getElementById('searchInput');
+
+            // Render cards
+            function renderCards(filter = "") {
+              cardsContainer.innerHTML = "";
+              scholarships.forEach(sch => {
+                if (sch.keywords.toLowerCase().includes(filter.toLowerCase()) || sch.name.toLowerCase().includes(filter.toLowerCase())) {
+                  const card = document.createElement('div');
+                  card.className = "bg-white p-6 rounded-lg shadow hover:shadow-md transition";
+                  card.innerHTML = `
+                    <h4 class="text-lg font-bold mb-1">${sch.name}</h4>
+                    <p class="text-sm text-gray-600 mb-2">${sch.description}</p>
+                    <a href="${sch.link}" target="_blank" class="text-blue-600 text-sm font-semibold">Apply →</a>
+                  `;
+                  cardsContainer.appendChild(card);
+                }
+              });
+            }
+
+            renderCards();
+
+            searchInput.addEventListener('input', (e) => {
+              renderCards(e.target.value);
+            });
+          });
+        </script>
       </div>
     </div>
   </section>
 
-  <!-- Contact Us -->
+  <!-- Contact -->
   <section id="contact" class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4">
       <h3 class="text-3xl font-semibold text-blue-700 mb-6 text-center">📬 Contact Us</h3>
@@ -107,16 +185,6 @@
     <p>&copy; 2025 ScholSteps • Built for students, by students 💙</p>
   </footer>
 
-  <!-- Search Filter Script -->
-  <script>
-    const input = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.card');
-    input.addEventListener('input', () => {
-      const q = input.value.trim().toLowerCase();
-      cards.forEach(card => {
-        card.style.display = card.getAttribute('data-keywords').includes(q) ? '' : 'none';
-      });
-    });
-  </script>
 </body>
 </html>
+</details>
