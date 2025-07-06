@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scholarship ROI Calculator | ScholSteps</title>
+  <title>Realistic ROI Calculator | ScholSteps</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .dark-mode { background-color: #1a202c; color: #e2e8f0; }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -19,60 +16,152 @@
     </div>
   </nav>
 
-  <section class="max-w-4xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-center text-blue-700 mb-8">Scholarship ROI Calculator</h2>
+  <section class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">Realistic Scholarship ROI Calculator</h2>
     
-    <form id="roiForm" class="space-y-6 bg-white shadow-md rounded p-6">
-      <div>
-        <label class="block font-semibold">Annual Tuition ($)</label>
-        <input type="number" id="tuition" class="w-full p-3 border border-gray-300 rounded" required>
+    <form id="roiForm" class="bg-white shadow rounded-lg p-6 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-semibold">Annual Tuition ($)</label>
+          <input type="number" id="tuition" class="w-full p-2 border rounded" required>
+        </div>
+        <div>
+          <label class="block font-semibold">Living Expenses Per Year ($)</label>
+          <input type="number" id="living" class="w-full p-2 border rounded" required>
+        </div>
+        <div>
+          <label class="block font-semibold">Total Scholarship Amount ($)</label>
+          <input type="number" id="scholarship" class="w-full p-2 border rounded" required>
+        </div>
+        <div>
+          <label class="block font-semibold">Expected Starting Salary ($)</label>
+          <input type="number" id="salary" class="w-full p-2 border rounded" required>
+        </div>
+        <div>
+          <label class="block font-semibold">Expected Salary Growth Rate (%)</label>
+          <input type="number" id="growth" class="w-full p-2 border rounded" value="3">
+        </div>
       </div>
-      <div>
-        <label class="block font-semibold">Total Scholarship Amount ($)</label>
-        <input type="number" id="scholarship" class="w-full p-3 border border-gray-300 rounded" required>
-      </div>
-      <div>
-        <label class="block font-semibold">Annual Living Expenses ($)</label>
-        <input type="number" id="living" class="w-full p-3 border border-gray-300 rounded" required>
-      </div>
-      <div>
-        <label class="block font-semibold">Expected Annual Salary After Graduation ($)</label>
-        <input type="number" id="salary" class="w-full p-3 border border-gray-300 rounded" required>
-      </div>
-      <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition">Calculate</button>
+      <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Calculate ROI</button>
     </form>
 
-    <div id="results" class="mt-8 hidden bg-blue-50 border-l-4 border-blue-400 p-6 rounded">
-      <h3 class="text-xl font-semibold mb-4">📊 Results:</h3>
-      <p id="netCost" class="mb-2"></p>
-      <p id="roi" class="mb-2"></p>
-      <p id="breakEven" class="mb-2"></p>
+    <div id="results" class="mt-10 hidden">
+      <h3 class="text-xl font-semibold mb-4">📊 Year-by-Year Breakdown:</h3>
+      <table class="w-full table-auto border text-sm mb-6">
+        <thead class="bg-blue-100">
+          <tr>
+            <th class="p-2 border">Year</th>
+            <th class="p-2 border">Cost ($)</th>
+            <th class="p-2 border">Scholarship Used ($)</th>
+            <th class="p-2 border">Net Cost ($)</th>
+          </tr>
+        </thead>
+        <tbody id="costTable" class="text-center bg-white">
+        </tbody>
+      </table>
+
+      <div class="bg-blue-50 p-4 rounded mb-6">
+        <p id="totalNet" class="mb-2"></p>
+        <p id="roi" class="mb-2"></p>
+        <p id="breakeven" class="mb-2"></p>
+      </div>
+
+      <h3 class="text-lg font-semibold mb-2">📈 Salary Growth vs. Total Cost</h3>
+      <canvas id="chart" height="100"></canvas>
     </div>
   </section>
 
-  <footer class="text-center text-sm text-gray-600 py-6 border-t">
-    &copy; 2025 ScholSteps • Built to empower underserved youth 💙
+  <footer class="text-center text-gray-500 text-sm mt-12 py-6 border-t">
+    &copy; 2025 ScholSteps — Empowering Education for All 💙
   </footer>
 
   <script>
     document.getElementById("roiForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      
-      const tuition = parseFloat(document.getElementById("tuition").value);
-      const scholarship = parseFloat(document.getElementById("scholarship").value);
-      const living = parseFloat(document.getElementById("living").value);
-      const salary = parseFloat(document.getElementById("salary").value);
-      
-      const totalCost = (tuition + living) * 4;
-      const netCost = totalCost - scholarship;
-      const roi = ((salary * 4 - netCost) / netCost) * 100;
-      const breakEven = netCost > 0 ? (netCost / salary).toFixed(1) : 0;
 
-      document.getElementById("netCost").textContent = `💰 Estimated Net Cost: $${netCost.toLocaleString()}`;
-      document.getElementById("roi").textContent = `📈 Estimated ROI: ${roi.toFixed(2)}%`;
-      document.getElementById("breakEven").textContent = `⏳ Estimated Break-even Time: ${breakEven} years`;
-      
+      const tuition = parseFloat(document.getElementById("tuition").value);
+      const living = parseFloat(document.getElementById("living").value);
+      const scholarship = parseFloat(document.getElementById("scholarship").value);
+      const salaryStart = parseFloat(document.getElementById("salary").value);
+      const growth = parseFloat(document.getElementById("growth").value) / 100;
+
+      const annualCost = tuition + living;
+      const years = 4;
+      const yearlyScholarship = scholarship / years;
+      let netTotal = 0;
+      let salary = salaryStart;
+
+      const table = document.getElementById("costTable");
+      table.innerHTML = "";
+
+      for (let year = 1; year <= years; year++) {
+        const net = annualCost - yearlyScholarship;
+        netTotal += net;
+
+        table.innerHTML += `
+          <tr>
+            <td class="p-2 border">${year}</td>
+            <td class="p-2 border">$${annualCost.toLocaleString()}</td>
+            <td class="p-2 border">$${yearlyScholarship.toLocaleString()}</td>
+            <td class="p-2 border font-semibold text-red-600">$${net.toLocaleString()}</td>
+          </tr>
+        `;
+      }
+
+      // Calculate ROI
+      const totalEarned = Array.from({length: 10}).reduce((acc, _, i) => acc + (salaryStart * Math.pow(1 + growth, i)), 0);
+      const roi = ((totalEarned - netTotal) / netTotal) * 100;
+      const breakeven = Math.ceil(netTotal / salaryStart);
+
+      document.getElementById("totalNet").textContent = `💰 Total Net Cost (After Scholarship): $${netTotal.toLocaleString()}`;
+      document.getElementById("roi").textContent = `📈 Estimated ROI Over 10 Years: ${roi.toFixed(2)}%`;
+      document.getElementById("breakeven").textContent = `⏳ Break-even Estimate: ~${breakeven} years after graduation`;
+
+      // Show results
       document.getElementById("results").classList.remove("hidden");
+
+      // Salary chart
+      const salaryData = [];
+      for (let i = 0; i < 10; i++) {
+        salaryData.push(Math.round(salaryStart * Math.pow(1 + growth, i)));
+      }
+
+      const ctx = document.getElementById("chart").getContext("2d");
+      if (window.salaryChart) window.salaryChart.destroy();
+      window.salaryChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: Array.from({ length: 10 }, (_, i) => `Year ${i + 1}`),
+          datasets: [
+            {
+              label: "Projected Salary ($)",
+              data: salaryData,
+              fill: false,
+              borderColor: "blue",
+              tension: 0.2
+            },
+            {
+              label: "Total Net Cost (Target)",
+              data: Array(10).fill(netTotal),
+              borderDash: [5, 5],
+              borderColor: "red",
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: value => "$" + value.toLocaleString() }
+            }
+          }
+        }
+      });
     });
   </script>
 </body>
