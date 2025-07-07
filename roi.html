@@ -2,193 +2,208 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Realistic ROI Calculator | ScholSteps</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ScholSteps Scholarship ROI Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow p-4">
+  <nav class="bg-white shadow p-4 mb-6">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <a href="index.html" class="text-xl font-bold text-blue-700">← ScholSteps</a>
       <h1 class="text-lg font-semibold">🎓 ROI Calculator</h1>
     </div>
   </nav>
 
-  <!-- Calculator Section -->
-  <section class="max-w-4xl mx-auto px-4 py-10">
-    <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">Realistic Scholarship ROI Calculator</h2>
-    
-    <form id="roiForm" class="bg-white shadow rounded-lg p-6 space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <main class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">Realistic Scholarship ROI Calculator</h2>
+
+    <form id="roiForm" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label class="block font-semibold">Annual Tuition ($)</label>
-          <input type="number" id="tuition" class="w-full p-2 border rounded" required>
+          <label for="tuition" class="block font-semibold mb-1">Annual Tuition ($)</label>
+          <input id="tuition" type="number" min="0" required class="w-full border rounded p-2" placeholder="e.g., 15000" />
         </div>
         <div>
-          <label class="block font-semibold">Living Expenses Per Year ($)</label>
-          <input type="number" id="living" class="w-full p-2 border rounded" required>
+          <label for="living" class="block font-semibold mb-1">Living Expenses Per Year ($)</label>
+          <input id="living" type="number" min="0" required class="w-full border rounded p-2" placeholder="e.g., 10000" />
         </div>
         <div>
-          <label class="block font-semibold">Total Scholarship Amount ($)</label>
-          <input type="number" id="scholarship" class="w-full p-2 border rounded" required>
+          <label for="scholarship" class="block font-semibold mb-1">Total Scholarship Amount ($)</label>
+          <input id="scholarship" type="number" min="0" required class="w-full border rounded p-2" placeholder="e.g., 40000" />
         </div>
         <div>
-          <label class="block font-semibold">Expected Starting Salary ($)</label>
-          <input type="number" id="salary" class="w-full p-2 border rounded" required>
+          <label for="salary" class="block font-semibold mb-1">Expected Starting Salary ($)</label>
+          <input id="salary" type="number" min="0" required class="w-full border rounded p-2" placeholder="e.g., 60000" />
         </div>
         <div>
-          <label class="block font-semibold">Expected Salary Growth Rate (%)</label>
-          <input type="number" id="growth" class="w-full p-2 border rounded" value="3">
+          <label for="growth" class="block font-semibold mb-1">Expected Salary Growth Rate (%)</label>
+          <input id="growth" type="number" min="0" step="0.1" value="3" class="w-full border rounded p-2" />
         </div>
       </div>
-      <button type="submit" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Calculate ROI</button>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white font-semibold py-3 rounded hover:bg-blue-700 transition"
+      >
+        Calculate ROI
+      </button>
     </form>
 
-    <!-- Results -->
-    <div id="results" class="mt-10 hidden">
-      <h3 class="text-xl font-semibold mb-4">📊 Year-by-Year Breakdown:</h3>
-      <table class="w-full table-auto border text-sm mb-6">
-        <thead class="bg-blue-100">
-          <tr>
-            <th class="p-2 border">Year</th>
-            <th class="p-2 border">Cost ($)</th>
-            <th class="p-2 border">Scholarship Used ($)</th>
-            <th class="p-2 border">Net Cost ($)</th>
+    <section id="results" class="mt-10 hidden">
+      <h3 class="text-2xl font-semibold mb-4 text-center">📊 Year-by-Year Breakdown</h3>
+      <table class="w-full border-collapse border mb-8">
+        <thead>
+          <tr class="bg-blue-100">
+            <th class="border p-2">Year</th>
+            <th class="border p-2">Cost ($)</th>
+            <th class="border p-2">Scholarship Used ($)</th>
+            <th class="border p-2">Net Cost ($)</th>
           </tr>
         </thead>
-        <tbody id="costTable" class="text-center bg-white"></tbody>
+        <tbody id="costTable" class="text-center"></tbody>
       </table>
 
-      <div class="bg-blue-50 p-4 rounded mb-6">
-        <p id="totalNet" class="mb-2"></p>
-        <p id="roi" class="mb-2"></p>
-        <p id="breakeven" class="mb-2"></p>
+      <div class="bg-blue-50 p-6 rounded mb-8 text-center space-y-2">
+        <p id="totalNet" class="text-lg font-semibold"></p>
+        <p id="roi" class="text-lg font-semibold"></p>
+        <p id="breakeven" class="text-lg font-semibold"></p>
       </div>
 
-      <h3 class="text-lg font-semibold mb-2">📈 Salary Growth vs. Total Cost</h3>
-      <canvas id="chart" height="100"></canvas>
-    </div>
-  </section>
+      <h3 class="text-xl font-semibold mb-4 text-center">📈 Salary Growth vs. Total Net Cost</h3>
+      <canvas id="chart" height="150"></canvas>
+    </section>
+  </main>
 
-  <footer class="text-center text-gray-500 text-sm mt-12 py-6 border-t">
+  <footer class="text-center text-gray-500 text-sm mt-12 mb-6">
     &copy; 2025 ScholSteps — Empowering Education for All 💙
   </footer>
 
-  <!-- Script -->
   <script>
-    document.getElementById("roiForm").addEventListener("submit", function (e) {
+    const form = document.getElementById("roiForm");
+    const resultsSection = document.getElementById("results");
+    const costTable = document.getElementById("costTable");
+    const totalNetEl = document.getElementById("totalNet");
+    const roiEl = document.getElementById("roi");
+    const breakevenEl = document.getElementById("breakeven");
+    const ctx = document.getElementById("chart").getContext("2d");
+    let chartInstance;
+
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      // Grab inputs
       const tuition = parseFloat(document.getElementById("tuition").value);
       const living = parseFloat(document.getElementById("living").value);
       const scholarship = parseFloat(document.getElementById("scholarship").value);
       const salaryStart = parseFloat(document.getElementById("salary").value);
-      const growthRate = parseFloat(document.getElementById("growth").value) / 100;
+      const growthPercent = parseFloat(document.getElementById("growth").value);
 
       if (
-        isNaN(tuition) || isNaN(living) || isNaN(scholarship) ||
-        isNaN(salaryStart) || isNaN(growthRate)
+        [tuition, living, scholarship, salaryStart, growthPercent].some(
+          (val) => isNaN(val) || val < 0
+        )
       ) {
-        alert("Please fill in all fields with valid numbers.");
+        alert("Please enter valid non-negative numbers for all fields.");
         return;
       }
 
-      const annualCost = tuition + living;
       const years = 4;
+      const annualCost = tuition + living;
       const yearlyScholarship = scholarship / years;
-      let netTotal = 0;
 
-      const table = document.getElementById("costTable");
-      table.innerHTML = "";
+      costTable.innerHTML = "";
+      let totalNetCost = 0;
 
       for (let year = 1; year <= years; year++) {
-        const net = annualCost - yearlyScholarship;
-        netTotal += net;
+        const netCost = annualCost - yearlyScholarship;
+        totalNetCost += netCost;
 
-        table.innerHTML += `
+        costTable.innerHTML += `
           <tr>
-            <td class="p-2 border">${year}</td>
-            <td class="p-2 border">$${annualCost.toLocaleString()}</td>
-            <td class="p-2 border">$${yearlyScholarship.toLocaleString()}</td>
-            <td class="p-2 border font-semibold text-red-600">$${net.toLocaleString()}</td>
+            <td class="border p-2">${year}</td>
+            <td class="border p-2">$${annualCost.toLocaleString()}</td>
+            <td class="border p-2">$${yearlyScholarship.toLocaleString()}</td>
+            <td class="border p-2 font-semibold text-red-600">$${netCost.toLocaleString()}</td>
           </tr>
         `;
       }
 
-      // Earnings and breakeven logic
-      let totalEarnings = 0;
-      let salaries = [];
-      let cumulative = 0;
-      let breakevenYear = "10+ (Not yet)";
+      // Calculate earnings for 10 years post-graduation
+      const growthRate = growthPercent / 100;
+      let cumulativeSalary = 0;
+      let breakevenYear = "More than 10 years";
+      const salaryArr = [];
 
       for (let i = 0; i < 10; i++) {
         const salary = salaryStart * Math.pow(1 + growthRate, i);
-        totalEarnings += salary;
-        salaries.push(Math.round(salary));
-        cumulative += salary;
-        if (cumulative >= netTotal && breakevenYear === "10+ (Not yet)") {
+        salaryArr.push(Math.round(salary));
+        cumulativeSalary += salary;
+
+        if (cumulativeSalary >= totalNetCost && breakevenYear === "More than 10 years") {
           breakevenYear = i + 1;
         }
       }
 
-      const roi = ((totalEarnings - netTotal) / netTotal) * 100;
+      const totalEarnings = salaryArr.reduce((a, b) => a + b, 0);
+      const roi = ((totalEarnings - totalNetCost) / totalNetCost) * 100;
 
-      document.getElementById("totalNet").textContent =
-        `💰 Total Net Cost (After Scholarship): $${netTotal.toLocaleString()}`;
-      document.getElementById("roi").textContent =
-        `📈 Estimated ROI Over 10 Years: ${roi.toFixed(2)}%`;
-      document.getElementById("breakeven").textContent =
-        `⏳ Break-even Estimate: ~${breakevenYear} year${breakevenYear !== 1 ? 's' : ''} after graduation`;
+      // Show summary text
+      totalNetEl.textContent = `💰 Total Net Cost (After Scholarship): $${totalNetCost.toLocaleString()}`;
+      roiEl.textContent = `📈 Estimated ROI Over 10 Years: ${roi.toFixed(2)}%`;
+      breakevenEl.textContent = `⏳ Break-even Estimate: ~${breakevenYear} year${breakevenYear === 1 ? "" : "s"} after graduation`;
 
-      document.getElementById("results").classList.remove("hidden");
+      // Show results section
+      resultsSection.classList.remove("hidden");
 
-      // Draw Chart
-      const ctx = document.getElementById("chart").getContext("2d");
-      if (window.salaryChart) window.salaryChart.destroy();
-      window.salaryChart = new Chart(ctx, {
+      // Draw chart
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+      chartInstance = new Chart(ctx, {
         type: "line",
         data: {
           labels: Array.from({ length: 10 }, (_, i) => `Year ${i + 1}`),
           datasets: [
             {
               label: "Projected Salary ($)",
-              data: salaries,
-              borderColor: "blue",
+              data: salaryArr,
+              borderColor: "#2563EB", // Tailwind blue-600
+              backgroundColor: "rgba(37, 99, 235, 0.2)",
               fill: true,
-              backgroundColor: "rgba(59,130,246,0.1)",
-              tension: 0.2
+              tension: 0.3,
             },
             {
-              label: "Total Net Cost (Target)",
-              data: Array(10).fill(netTotal),
-              borderDash: [5, 5],
-              borderColor: "red",
-              fill: false
-            }
-          ]
+              label: "Total Net Cost (Fixed)",
+              data: Array(10).fill(totalNetCost),
+              borderColor: "#DC2626", // Tailwind red-600
+              borderDash: [6, 6],
+              fill: false,
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
-            legend: { position: 'top' },
+            legend: {
+              position: "top",
+            },
             tooltip: {
               callbacks: {
-                label: context => `${context.dataset.label}: $${context.parsed.y.toLocaleString()}`
-              }
-            }
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}`,
+              },
+            },
           },
           scales: {
             y: {
               beginAtZero: true,
               ticks: {
-                callback: value => "$" + value.toLocaleString()
-              }
-            }
-          }
-        }
+                callback: (val) => `$${val.toLocaleString()}`,
+              },
+            },
+          },
+        },
       });
     });
   </script>
