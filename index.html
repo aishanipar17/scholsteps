@@ -30,22 +30,7 @@
 
   <!-- Dark mode toggle -->
   <div class="fixed top-4 right-4 z-50">
-    <button id="darkToggle" class="bg-gray-200 dark:bg-gray-700 p-2 rounded shadow" aria-label="Toggle Dark Mode">🌓</button>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="bg-white dark:bg-gray-800 shadow sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-xl font-bold text-blue-700 dark:text-blue-300">ScholSteps</h1>
-      <div class="space-x-4 text-sm">
-        <a href="#scholarships" class="hover:text-blue-600 dark:hover:text-blue-400">Scholarships</a>
-        <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
-        <a href="#submit" class="hover:text-blue-600 dark:hover:text-blue-400">Submit</a>
-        <a href="roi.html" class="hover:text-blue-600 dark:hover:text-blue-400">ROI Calculator</a>
-      </div>
-    </div>
-  </nav>
-
+    <button id="darkToggle" class="bg-gray-200 dark:bg-gray-700 p-2 rounded shadow" aria-label="Toggle Dark Mode">
   <!-- Hero -->
   <section class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white py-20 text-center px-4 dark:from-gray-700 dark:to-gray-600">
     <h2 class="text-4xl font-bold mb-4">Unlock Your Future with ScholSteps</h2>
@@ -70,7 +55,7 @@
     <div class="max-w-6xl mx-auto px-4">
       <h3 class="text-3xl font-semibold text-center text-blue-700 mb-10 dark:text-blue-300">🎓 Browse Scholarships</h3>
 
-      <!-- Category Buttons -->
+      <!-- Categories Nav -->
       <div class="flex justify-center space-x-4 mb-8" role="group" aria-label="Scholarship categories">
         <button class="category-btn px-4 py-2 bg-blue-100 dark:bg-gray-700 rounded" data-cat="all">All</button>
         <button class="category-btn px-4 py-2 bg-green-100 dark:bg-gray-700 rounded" data-cat="Black">Black</button>
@@ -80,76 +65,101 @@
         <button class="category-btn px-4 py-2 bg-pink-100 dark:bg-gray-700 rounded" data-cat="LGBTQ">LGBTQ</button>
       </div>
 
-      <!-- Featured Cards Grid -->
       <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Featured example cards (continue adding your cards here) -->
-        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Gates Leadership minority financial" data-category="Black">
+        <!-- Featured Scholarships (Always Visible) -->
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Gates Leadership minority financial" data-category="Black" data-featured="true">
           <h4 class="text-lg font-bold dark:text-gray-100">The Gates Scholarship</h4>
           <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Full ride for minority seniors with leadership and financial need.</p>
           <a href="https://www.thegatesscholarship.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
         </div>
 
-        <!-- ... other cards ... -->
-
-        <!-- 🔍 More Searchable (Invisible) Scholarships -->
-        <div id="moreScholarships" class="hidden">
-          <div class="card" data-keywords="Women STEM engineering tech" data-category="All">
-            <h4 class="sr-only">Society of Women Engineers Scholarship</h4>
-            <a href="https://swe.org/scholarships/" target="_blank">Society of Women Engineers Scholarship</a>
-          </div>
-          <div class="card" data-keywords="Latinx STEM hispanic financial" data-category="Hispanic">
-            <h4 class="sr-only">SHPE Foundation Scholarship</h4>
-            <a href="https://www.shpe.org/students/scholarshpe" target="_blank">SHPE Foundation Scholarship</a>
-          </div>
-          <div class="card" data-keywords="Disability education accessibility" data-category="All">
-            <h4 class="sr-only">Google Lime Scholarship</h4>
-            <a href="https://www.limeconnect.com/" target="_blank">Google Lime Scholarship</a>
-          </div>
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="UNCF African-American academic" data-category="Black" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">UNCF Scholarships</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Support for African-American students with academic excellence.</p>
+          <a href="https://uncf.org/scholarships" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white dark:bg-gray-800">
-    <div class="max-w-3xl mx-auto px-4">
-      <h3 class="text-3xl font-semibold text-blue-700 mb-6 text-center dark:text-blue-300">📬 Contact Us</h3>
-      <form
-        action="https://formspree.io/f/your-contact-form-id"  <!-- Replace this -->
-        method="POST"
-        class="space-y-5"
-        aria-label="Contact form"
-      >
-        <input name="name" type="text" placeholder="Your Name" class="w-full border p-3 rounded dark:bg-gray-900 dark:text-white" required />
-        <input name="email" type="email" placeholder="Your Email" class="w-full border p-3 rounded dark:bg-gray-900 dark:text-white" required />
-        <textarea name="message" placeholder="Your Message" class="w-full border p-3 rounded h-32 dark:bg-gray-900 dark:text-white" required></textarea>
-        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition">Send Message</button>
-      </form>
-    </div>
-  </section>
 
-  <!-- Submit Section -->
-  <section id="submit" class="py-16 bg-gray-100 dark:bg-gray-800">
-    <div class="max-w-3xl mx-auto px-4">
-      <h3 class="text-3xl font-semibold text-blue-700 mb-6 text-center dark:text-blue-300">🎁 Submit a Scholarship</h3>
-      <form
-        action="https://formspree.io/f/your-submit-form-id"  <!-- Replace this -->
-        method="POST"
-        class="space-y-5"
-        aria-label="Submit scholarship form"
-      >
-        <input name="name" type="text" placeholder="Scholarship Name" class="w-full border p-3 rounded dark:bg-gray-900 dark:text-white" required />
-        <input name="link" type="url" placeholder="Scholarship Link" class="w-full border p-3 rounded dark:bg-gray-900 dark:text-white" required />
-        <textarea name="description" placeholder="Brief Description" class="w-full border p-3 rounded h-24 dark:bg-gray-900 dark:text-white" required></textarea>
-        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition">Submit Scholarship</button>
-      </form>
-    </div>
-  </section>
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Jackie Robinson Black leadership" data-category="Black" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Jackie Robinson Foundation</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Four-year scholarships for minority students with leadership potential.</p>
+          <a href="https://www.jackierobinson.org/apply/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
 
-  <!-- Footer -->
-  <footer class="bg-blue-700 text-white py-6 text-center text-sm dark:bg-gray-900">
-    <p>&copy; 2025 ScholSteps • Built for students, by students 💙</p>
-  </footer>
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Ron Brown Black academic" data-category="Black" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Ron Brown Scholar Program</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Scholars seeking academic excellence and leadership.</p>
+          <a href="https://ronbrown.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
 
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Hispanic Latinx financial" data-category="Hispanic" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Hispanic Scholarship Fund</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Up to $5,000 for Latinx students with financial need.</p>
+          <a href="https://www.hsf.net/scholarship" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="APIA Asian Pacific underserved" data-category="AAPI" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">APIA Scholars</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Support for Asian & Pacific Islander students.</p>
+          <a href="https://apiascholars.org/scholarship/apia-scholarship/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Dell first-gen resilient" data-category="First-gen" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Dell Scholars</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">For resilient first-gen college students.</p>
+          <a href="https://www.dellscholars.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Point LGBTQ inclusion" data-category="LGBTQ" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Point Foundation</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Scholarships for LGBTQ+ leaders.</p>
+          <a href="https://pointfoundation.org/scholarships/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Coca-Cola leadership merit" data-category="All" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Coca-Cola Scholars Program</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Merit-based national scholarship for high-achievers.</p>
+          <a href="https://www.coca-colascholarsfoundation.org/apply/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="Thurgood Marshall hbcu black colleges" data-category="Black" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">Thurgood Marshall College Fund</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Scholarships for students attending HBCUs.</p>
+          <a href="https://www.tmcf.org/students-alumni/scholarship/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="College Board opportunity open everyone" data-category="All" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">College Board Opportunity Scholarships</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Easy-entry scholarships for completing college steps.</p>
+          <a href="https://opportunity.collegeboard.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow" data-keywords="American Indian indigenous tribal" data-category="All" data-featured="true">
+          <h4 class="text-lg font-bold dark:text-gray-100">American Indian College Fund</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Support for Native American students pursuing higher education.</p>
+          <a href="https://collegefund.org/students/scholarships/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <!-- Hidden Scholarships (Searchable Only) -->
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hidden" data-keywords="Dreamers undocumented" data-category="All" data-featured="false">
+          <h4 class="text-lg font-bold dark:text-gray-100">Golden Door Scholars</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">For undocumented students pursuing higher education.</p>
+          <a href="https://www.goldendoorscholars.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hidden" data-keywords="DACA Latinx merit" data-category="Hispanic" data-featured="false">
+          <h4 class="text-lg font-bold dark:text-gray-100">Ascend Educational Fund</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Open to immigrant students regardless of status in NYC.</p>
+          <a href="https://ascendfundny.org/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hidden" data-keywords="Women STEM minority" data-category="All" data-featured="false">
+          <h4 class="text-lg font-bold dark:text-gray-100">Society of Women Engineers</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">For women in STEM, especially minorities and underserved students.</p>
+          <a href="https://swe.org/scholarships/" target="_blank" class="text-blue-600 dark:text-blue-400 font-semibold">Apply →</a>
+        </div>
+      </div> <!-- end of #cards -->
+    </div> <!-- end of container -->
+  </section> <!-- end of scholarships section -->
   <!-- Scripts -->
   <script>
     // Dark mode toggle
@@ -157,45 +167,66 @@
       document.body.classList.toggle('dark-mode');
     });
 
-    // Search and category logic
+    // Search & filter logic
     const searchInput = document.getElementById('searchInput');
     const cards = document.querySelectorAll('.card');
     const categoryButtons = document.querySelectorAll('.category-btn');
 
-    function clearActiveCategory() {
-      categoryButtons.forEach(btn => btn.classList.remove('active'));
-    }
-
-    function showCardsByCategory(category) {
-      cards.forEach(card => {
-        const cat = card.dataset.category?.toLowerCase() || '';
-        card.style.display = category === 'all' || cat === category ? '' : 'none';
-      });
-    }
-
-    categoryButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        clearActiveCategory();
-        button.classList.add('active');
-        searchInput.value = '';
-        showCardsByCategory(button.dataset.cat);
-      });
-    });
-
+    // Filter by search input
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
       cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        const keywords = card.dataset.keywords?.toLowerCase() || '';
-        card.style.display = query === '' || text.includes(query) || keywords.includes(query) ? '' : 'none';
+        const keywords = card.dataset.keywords.toLowerCase();
+        const isFeatured = card.dataset.featured === "true";
+        if (isFeatured || keywords.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
       });
       clearActiveCategory();
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const allBtn = Array.from(categoryButtons).find(btn => btn.dataset.cat === 'all');
-      if (allBtn) allBtn.classList.add('active');
+    // Filter by category buttons
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedCategory = button.dataset.cat.toLowerCase();
+        clearActiveCategory();
+        button.classList.add('active');
+        searchInput.value = ''; // clear search
+
+        cards.forEach(card => {
+          const cardCat = card.dataset.category.toLowerCase();
+          const isFeatured = card.dataset.featured === "true";
+          if (selectedCategory === "all") {
+            card.classList.toggle('hidden', !isFeatured);
+          } else {
+            const match = cardCat === selectedCategory && isFeatured;
+            card.classList.toggle('hidden', !match);
+          }
+        });
+      });
     });
+
+    // Highlight "All" on load
+    window.addEventListener('DOMContentLoaded', () => {
+      categoryButtons.forEach(btn => {
+        if (btn.dataset.cat === 'all') {
+          btn.classList.add('active');
+        }
+      });
+
+      // Hide all non-featured on load
+      cards.forEach(card => {
+        const isFeatured = card.dataset.featured === "true";
+        if (!isFeatured) card.classList.add('hidden');
+      });
+    });
+
+    // Clear category highlight
+    function clearActiveCategory() {
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+    }
   </script>
 </body>
 </html>
