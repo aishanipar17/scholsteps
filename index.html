@@ -354,6 +354,39 @@
         }
       });
     });
+    <!-- More Scholarships Section -->
+<section id="more-scholarships" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4">
+    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300 mb-4">🔍 More Scholarships</h3>
+    <input
+      id="moreSearchInput"
+      type="text"
+      placeholder="Search additional scholarships..."
+      class="w-full p-3 border border-gray-300 rounded shadow mb-6 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+    />
+    <ul id="moreScholarshipList" class="space-y-4 text-gray-800 dark:text-gray-200">
+      <li><a href="https://bold.org/scholarships/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">Bold.org Scholarships</a> – Ongoing niche scholarships for various identities and interests.</li>
+      <li><a href="https://www.fastweb.com/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">Fastweb</a> – One of the largest searchable scholarship databases.</li>
+      <li><a href="https://www.scholarships.com/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">Scholarships.com</a> – Filter scholarships by type, deadline, and more.</li>
+      <li><a href="https://www.collegexpress.com/scholarships/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">CollegeXpress</a> – Lists tons of scholarships by interest or major.</li>
+      <li><a href="https://www.chegg.com/scholarships" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">Chegg Scholarships</a> – Daily updated database for all levels.</li>
+      <li><a href="https://www.unigo.com/scholarships" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400 font-semibold">Unigo</a> – Offers both search tools and their own scholarships.</li>
+      <!-- You can add more here! -->
+    </ul>
+  </div>
+</section>
+
+<script>
+  const moreSearchInput = document.getElementById('moreSearchInput');
+  const moreScholarshipList = document.getElementById('moreScholarshipList');
+
+  moreSearchInput.addEventListener('input', () => {
+    const query = moreSearchInput.value.toLowerCase();
+    const items = moreScholarshipList.querySelectorAll('li');
+    items.forEach(item => {
+      item.style.display = item.innerText.toLowerCase().includes(query) ? '' : 'none';
+    });
+  });
   </script>
 </body>
 </html>
